@@ -22,6 +22,14 @@ import { CommandLoader } from './core/CommandLoader';
 import { RateLimiter } from './core/RateLimiter';
 import { CooldownManager } from './core/CooldownManager';
 import { AntiBanManager } from './core/AntiBanManager';
+import { BrowserProfileService } from './core/BrowserProfileService';
+import { DocIDRepository } from './core/DocIDRepository';
+import { MessageHistoryManager } from './core/MessageHistoryManager';
+import { DeltaSyncService } from './core/DeltaSyncService';
+import { MessageActionManager } from './core/MessageActionManager';
+import { AttachmentDownloader } from './core/AttachmentDownloader';
+import { GroupManager } from './core/GroupManager';
+import { EdgeFeaturesManager } from './core/EdgeFeaturesManager';
 import { Logger, logger } from './core/Logger';
 import { SendMessageOptions } from './types';
 
@@ -47,6 +55,14 @@ export {
   RateLimiter,
   CooldownManager,
   AntiBanManager,
+  BrowserProfileService,
+  DocIDRepository,
+  MessageHistoryManager,
+  DeltaSyncService,
+  MessageActionManager,
+  AttachmentDownloader,
+  GroupManager,
+  EdgeFeaturesManager,
   Logger
 };
 
@@ -81,6 +97,14 @@ export class BitunFCA {
   public rateLimiter: RateLimiter;
   public cooldown: CooldownManager;
   public antiBan: AntiBanManager;
+  public browserProfile: BrowserProfileService;
+  public docID: DocIDRepository;
+  public messageHistory: MessageHistoryManager;
+  public deltaSync: DeltaSyncService;
+  public messageAction: MessageActionManager;
+  public attachmentDownload: AttachmentDownloader;
+  public group: GroupManager;
+  public edgeFeatures: EdgeFeaturesManager;
   public logger: Logger;
 
   private config: BitunFCAConfig;
@@ -122,6 +146,14 @@ export class BitunFCA {
     this.commands = new CommandLoader();
     this.rateLimiter = new RateLimiter(1000, 60000);
     this.cooldown = new CooldownManager();
+    this.browserProfile = new BrowserProfileService();
+    this.docID = new DocIDRepository(undefined, this.req);
+    this.messageHistory = new MessageHistoryManager(this.gql);
+    this.deltaSync = new DeltaSyncService(this.gql, this.mqtt, this.messageHistory);
+    this.messageAction = new MessageActionManager(this.gql, this.req);
+    this.attachmentDownload = new AttachmentDownloader(this.req, this.gql);
+    this.group = new GroupManager(this.gql, this.req);
+    this.edgeFeatures = new EdgeFeaturesManager(this.req, this.gql);
 
     this.setupEventRouting();
   }
