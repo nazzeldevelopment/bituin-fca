@@ -319,7 +319,7 @@ export class DocIDRepository extends EventEmitter {
     if (parts.length === 2) {
       const category = FULL_DOC_IDS[parts[0] as keyof typeof FULL_DOC_IDS];
       if (category) {
-        const entry = category[parts[1] as keyof typeof category];
+        const entry = category[parts[1] as keyof typeof category] as { id: string; name: string; version: number } | undefined;
         if (entry) return entry.id;
       }
     }

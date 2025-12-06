@@ -30,6 +30,8 @@ import { MessageActionManager } from './core/MessageActionManager';
 import { AttachmentDownloader } from './core/AttachmentDownloader';
 import { GroupManager } from './core/GroupManager';
 import { EdgeFeaturesManager } from './core/EdgeFeaturesManager';
+import { APIServer } from './api/APIServer';
+import { WebhooksManager } from './api/WebhooksManager';
 import { Logger, logger } from './core/Logger';
 import { SendMessageOptions } from './types';
 
@@ -63,6 +65,8 @@ export {
   AttachmentDownloader,
   GroupManager,
   EdgeFeaturesManager,
+  APIServer,
+  WebhooksManager,
   Logger
 };
 
