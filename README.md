@@ -1,4 +1,4 @@
-# Bituin-FCA V1/V2 Ultra
+# Bituin-FCA
 
 Advanced Facebook Chat API library for Node.js/TypeScript.
 
