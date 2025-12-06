@@ -52,7 +52,7 @@ describe('CooldownManager', () => {
   let cooldown: CooldownManager;
 
   beforeEach(() => {
-    cooldown = new CooldownManager(100);
+    cooldown = new CooldownManager({ defaultCooldown: 100 });
   });
 
   test('should allow first action', () => {
