@@ -1,7 +1,5 @@
 # API Map (Core Endpoints)
 
-## CHANGELOGS.md details all changes every patch notes and date match
-
 ## Authentication
 - Login: `https://www.facebook.com/login.php`
 - Logout: `https://www.facebook.com/logout.php`
