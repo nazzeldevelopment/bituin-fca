@@ -18,7 +18,9 @@ export class MessageParser extends EventEmitter {
       senderID: raw.from || raw.sender || raw.user || raw.author || '',
       messageID: raw.mid || raw.messageID || raw.message_id || '',
       body: raw.body || raw.message || raw.text || '',
-      attachments: raw.attachments || []
+      attachments: raw.attachments || [],
+      timestamp: raw.timestamp || raw.time || Date.now(),
+      isGroup: raw.isGroup ?? raw.is_group ?? (raw.thread_type === 'group')
     };
 
     if (message.body) {
